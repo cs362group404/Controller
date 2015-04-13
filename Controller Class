@@ -1,0 +1,67 @@
+// Alejandro Sanchez Controller Class
+
+
+import java.util.Scanner;
+
+
+public class Controller {
+	
+	CardClass myCard;
+	Player[] players = new Player[6] ; 
+	Board boardInstance;
+	int numPlayers;
+	final int VICTORY = 5;
+	final int NUMREDCARDS = 777;
+	final int NUMGREENCARDS = 250;
+	
+	Controller(){ 
+		numPlayers = 0;
+	}
+
+	
+	public void createPlayers(){
+		System.out.print("\nHow many Players are there?\n");
+		Scanner scanner = new Scanner(System.in);
+	try{
+		numPlayers = Integer.parseInt(scanner.nextLine());
+	}
+	catch (NumberFormatException e) {
+	    e.printStackTrace();
+	}
+		
+		System.out.print("Sounds good! " + numPlayers + " people will be playing!\n");
+		for (int i = 0; i < numPlayers; i++){
+			players[i] = new Player();
+			System.out.print("Enter name of player " + (i+1) + ":\t");
+			String name = scanner.nextLine();
+			players[i].setName(name) ;
+			players[i].setId(i);
+			players[i].setJudge(false);
+			
+			System.out.print("\nThe name of this player is " + players[i].name + "\n");
+		}
+	}
+	
+	
+	public void dealCards(){
+		CardClass[] redDeck = new CardClass[NUMREDCARDS];
+		CardClass[] greenDeck = new CardClass[NUMGREENCARDS];
+		
+		for (int i = 0; i < redDeck.length;i++){
+			redDeck[i] = new CardClass();
+		
+		}
+		
+		
+		
+	}
+	public boolean victoryCondition(){
+		boolean gameOver = false;
+		for (int i = 0; i < numPlayers; i++){
+			if (players[i].points == VICTORY)
+				gameOver = true;
+		}
+		return gameOver;
+	
+	}
+}
